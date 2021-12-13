@@ -1,0 +1,25 @@
+clc
+clear all 
+a=[10 8 -3 1 ; 2 10 1 -4 ;3 -4 10 1 ;2 2 -3 10];
+b=[16;9;10;11];
+tol=0.001;
+error=1;
+n=length(b);
+x0=zeros(n,1);
+x=zeros(n,1);
+w=1.2;
+
+while error>tol
+    x0=x;
+    for i=1:n
+        sum=0;
+        for j=1:n
+            if i~=j
+                sum=sum+a(i,j)*x(j);
+            end
+        end
+        x(i)= (1-w)*x0(i)+ w*(b(i,:)-sum)/a(i,i);
+    end
+    error =norm(x-x0,inf);
+end
+    x

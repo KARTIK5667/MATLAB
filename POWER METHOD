@@ -1,0 +1,15 @@
+clc
+clear all
+a=[4 1 0 ; 1 20 1 ; 0 1 4];
+x0=[1 ; 1 ; 1];
+tol =0.001;
+k0=0;
+k1=100;
+while abs(k1-k0) > tol
+    y=a*x0;
+    k0=k1;
+    k1=max(abs(y));
+    x0=(1/k1)*y;
+end
+k1
+x0
